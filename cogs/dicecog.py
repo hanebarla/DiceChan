@@ -173,8 +173,10 @@ class DiceCog(commands.Cog):
 
                 dndn_exp = "/d xdy: y面ダイスをx回ふるよ。\
                             optionは今後増やしていく予定。\n"
+
+                repo = "レポジトリはここだよ。\nhttps://github.com/hanebarla/DiceChan"
                 reply = begin + d100_exp + "\n" + \
-                    d20_exp + "\n" + dndn_exp + end
+                    d20_exp + "\n" + dndn_exp + "\n" + repo + end
         else:
             reply = "何か用？"
 

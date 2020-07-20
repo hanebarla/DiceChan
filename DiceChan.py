@@ -1,4 +1,4 @@
-import sys
+import os
 from discord.ext import commands
 import traceback
 import random
@@ -24,7 +24,7 @@ class DiceChan(commands.Bot):
 
 if __name__ == '__main__':
     random.seed()
-    args = sys.argv
+    TOKEN = os.environ['DICECHAN_TOKEN']
 
     bot = DiceChan()
-    bot.run(DICECHAN_TOKEN)
+    bot.run(TOKEN)

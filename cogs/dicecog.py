@@ -155,7 +155,7 @@ class DiceCog(commands.Cog):
 
     async def reply(self, ctx):
         if "使い方" in ctx.content:
-            if "ない" in ctx.content or "なえ" in ctx.contentor or "なく" in ctx.content:
+            if "ない" in ctx.content or "なく" in ctx.content or "なえ" in ctx.content:
                 reply = "ふざけないで"
             else:
                 begin = "```\r"
@@ -165,6 +165,9 @@ class DiceCog(commands.Cog):
                             今後修正していくよ\
                             optionに引数に大小比較をとれるよ。\
                             大なり小なりを使えるよ。\
+                            大なり: '>','g','G'が使える\
+                            小なり: '<','l','L'が使える\
+                            イコール: '=','e','E'\
                             '>10'や'g10','> 10'といった感じ\n"
 
                 d20_exp = "/d20: 1から20までの乱数を一つだすよ。\

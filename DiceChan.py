@@ -25,7 +25,6 @@ class DiceChan(commands.Bot):
 if __name__ == '__main__':
     random.seed()
     args = sys.argv
-    TOKEN = args[1]
 
     bot = DiceChan()
-    bot.run(TOKEN)
+    bot.run(DICECHAN_TOKEN)

@@ -153,43 +153,6 @@ class DiceCog(commands.Cog):
         except Exception:
             await ctx.send("コマンドの引数が違うよ‼")
 
-    async def reply(self, ctx):
-        if "使い方" in ctx.content:
-            if "ない" in ctx.content or "なく" in ctx.content or "なえ" in ctx.content:
-                reply = "ふざけないで"
-            else:
-                begin = "```\r"
-                end = "```"
-                d100_exp = "/d100: 1から100までの乱数を1つ出すよ。\
-                            一様分布でリアルダイスと確率分布は違うよ。\
-                            今後修正していくよ\
-                            optionに引数に大小比較をとれるよ。\
-                            大なり小なりを使えるよ。\
-                            大なり: '>','g','G'が使える\
-                            小なり: '<','l','L'が使える\
-                            イコール: '=','e','E'\
-                            '>10'や'g10','> 10'といった感じ\n"
-
-                d20_exp = "/d20: 1から20までの乱数を一つだすよ。\
-                           一様分布でリアルダイスとは同じはず。 \
-                           後はd100と同じだよ。\n"
-
-                dndn_exp = "/d xdy: y面ダイスをx回ふるよ。\
-                            optionは今後増やしていく予定。\n"
-
-                repo = "レポジトリはここだよ。\nhttps://github.com/hanebarla/DiceChan"
-                reply = begin + d100_exp + "\n" + \
-                    d20_exp + "\n" + dndn_exp + "\n" + repo + end
-        else:
-            reply = "何か用？"
-
-        await ctx.channel.send(reply)
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if self.bot.user in message.mentions:
-            await self.reply(message)
-
 
 def setup(bot):
     bot.add_cog(DiceCog(bot))

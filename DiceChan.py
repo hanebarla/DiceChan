@@ -4,7 +4,11 @@ import traceback
 import random
 
 
-AddCommands = ['cogs.dicecog']
+AddCommands = [
+    'cogs.dicecog',
+    'cogs.expressioncog',
+    'cogs.wordwolfcog'
+]
 
 
 class DiceChan(commands.Bot):

@@ -1,5 +1,6 @@
 from discord.ext import commands
 import random
+import re
 
 
 class DiceCog(commands.Cog):
@@ -125,11 +126,23 @@ class DiceCog(commands.Cog):
         await ctx.send(mes)
 
     @commands.command()
-    async def d(self, ctx, dice):
-        pos = dice.find('d')
-        sum = 0
+    async def d(self, ctx, dice="1d1", *args):
+        is_d = re.search('d', dice)
+        if not is_d or not dice:
+            return await ctx.send("コマンドの引数が違う～")
+
+        if dice == "1d1":
+            return await ctx.send("無意味な行為だね")
+
+        pos = is_d.start()
+        dsum = 0
         out = ""
+        okng = ""
+        sub1 = ""
         inner = "["
+
+        for arg in args:
+            sub1 += arg
 
         try:
             num = int(dice[:pos])
@@ -137,18 +150,25 @@ class DiceCog(commands.Cog):
             for i in range(num):
                 tmp = random.randint(1, legth)
                 if tmp == legth:
-                    inner += str(tmp) + "*,"
+                    inner += str(tmp) + "*"
+                elif tmp == 1:
+                    inner += str(tmp) + "`"
                 else:
-                    inner += str(tmp) + ","
+                    inner += str(tmp)
 
                 if i == (num - 1):
                     inner += ']'
                 else:
-                    inner += " "
+                    inner += ", "
 
-                sum += tmp
+                dsum += tmp
 
-            out = "```\r 合計:" + str(sum) + " " + inner + "```"
+                if len(sub1) > 0:
+                    okng = self.Suc_Fal(dsum, sub1)
+                else:
+                    okng = str(dsum)
+
+            out = "```\r 合計:" + okng + " " + inner + "```"
             await ctx.send(out)
         except Exception:
             await ctx.send("コマンドの引数が違うよ‼")

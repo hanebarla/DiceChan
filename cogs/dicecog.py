@@ -146,6 +146,9 @@ class DiceCog(commands.Cog):
 
         try:
             num = int(dice[:pos])
+            if num > 1000:
+                raise ValueError
+
             legth = int(dice[pos + 1:])
             for i in range(num):
                 tmp = random.randint(1, legth)
@@ -170,6 +173,8 @@ class DiceCog(commands.Cog):
 
             out = "```\r 合計:" + okng + " " + inner + "```"
             await ctx.send(out)
+        except ValueError:
+            await ctx.send("大きすぎるよ!!")
         except Exception:
             await ctx.send("コマンドの引数が違うよ‼")
 

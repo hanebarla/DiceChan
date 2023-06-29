@@ -1,7 +1,8 @@
 import os
+import discord
 from discord.ext import commands
-import traceback
 import random
+import asyncio
 
 
 AddCommands = [
@@ -12,23 +13,29 @@ AddCommands = [
 
 
 class DiceChan(commands.Bot):
+    def __init__(self, command_prefix="/", intents=None):
+        super().__init__(command_prefix, intents=intents)
 
-    def __init__(self, command_prefix="/"):
-        super().__init__(command_prefix)
-
+    async def load_cogs(self):
         for cog in AddCommands:
-            try:
-                self.load_extension(cog)
-            except Exception:
-                traceback.print_exc()
+            await self.load_extension(cog)
 
     async def on_ready(self):
         print("Ready")
+
+
+async def main(bot, token):
+    await bot.load_cogs()
+    await bot.start(token)
 
 
 if __name__ == '__main__':
     random.seed()
     TOKEN = os.environ['DICECHAN_TOKEN']
 
-    bot = DiceChan()
-    bot.run(TOKEN)
+    intents = discord.Intents.all()
+    intents.typing = False
+
+    bot = DiceChan(intents=intents)
+
+    asyncio.run(main(bot, TOKEN))

@@ -113,5 +113,5 @@ class WordwCog(commands.Cog):
         await ctx.send("追加しました！！")
 
 
-def setup(bot):
-    bot.add_cog(WordwCog(bot))
+async def setup(bot):
+    await bot.add_cog(WordwCog(bot))

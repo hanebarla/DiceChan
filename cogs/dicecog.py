@@ -72,6 +72,10 @@ class DiceCog(commands.Cog):
         return out
 
     @commands.command()
+    async def dog(self, ctx):
+        await ctx.send('わん！')
+
+    @commands.command()
     async def d100(self, ctx, *args):
         rand = random.randint(1, 100)
         okng = ""
@@ -179,5 +183,5 @@ class DiceCog(commands.Cog):
             await ctx.send("コマンドの引数が違うよ‼")
 
 
-def setup(bot):
-    bot.add_cog(DiceCog(bot))
+async def setup(bot):
+    await bot.add_cog(DiceCog(bot))

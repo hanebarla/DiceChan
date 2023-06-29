@@ -49,5 +49,5 @@ class ExpCog(commands.Cog):
             await self.reply(message)
 
 
-def setup(bot):
-    bot.add_cog(ExpCog(bot))
+async def setup(bot):
+    await bot.add_cog(ExpCog(bot))
